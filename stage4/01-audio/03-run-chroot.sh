@@ -8,3 +8,4 @@ install -m 755 -o mpd -g audio -d /var/log/mpd
 
 chown -R mpd:audio /etc/mpd
 chown -R upmpdcli:audio /etc/upmpdcli
+chown -R root:audio /etc/raspotify

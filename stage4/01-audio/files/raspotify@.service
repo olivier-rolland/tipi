@@ -1,0 +1,83 @@
+[Unit]
+Description=Raspotify (%I)
+Documentation=https://github.com/dtcooper/raspotify
+Documentation=https://github.com/librespot-org/librespot
+Documentation=https://github.com/dtcooper/raspotify/wiki
+Documentation=https://github.com/librespot-org/librespot/wiki/Options
+Wants=network.target sound.target
+After=network.target sound.target
+
+[Service]
+DynamicUser=no
+SupplementaryGroups=audio
+
+# /usr/bin/raspotify-crash-report-generator.sh run by
+# raspotify-crash-report-generator.service handles
+# restart logic.
+ 
+#Restart=on-failure
+#RestartSec=10
+
+# Some of these may be implied by DynamicUser=yes
+RestrictRealtime=true
+RestrictSUIDSGID=true
+RestrictNamespaces=true
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6 AF_NETLINK
+
+ProtectHostname=true
+ProtectControlGroups=true
+ProtectKernelLogs=true
+ProtectKernelModules=true
+ProtectKernelTunables=true
+ProtectProc=invisible
+ProtectHome=true
+ProtectSystem=strict
+ProtectClock=yes
+
+DevicePolicy=strict
+DeviceAllow=char-alsa rw
+DeviceAllow=/dev/null rw
+DeviceAllow=/dev/random r
+DeviceAllow=/dev/urandom r
+
+UMask=077
+CacheDirectoryMode=0700
+CacheDirectory=%p/%i
+StateDirectoryMode=0700
+StateDirectory=%p/%i
+ConfigurationDirectoryMode=0600
+ConfigurationDirectory=%p/%i
+RuntimeDirectory=%p/%i
+
+PrivateTmp=true
+PrivateUsers=true
+
+ProcSubset=pid
+NoNewPrivileges=true
+PermissionsStartOnly=true
+LockPersonality=true
+MemoryDenyWriteExecute=true
+RemoveIPC=true
+
+CapabilityBoundingSet=
+
+SystemCallArchitectures=native
+SystemCallFilter=@system-service
+SystemCallFilter=~@privileged @resources
+SystemCallErrorNumber=EPERM
+
+Environment=LIBRESPOT_NAME="%P (%I)"
+Environment=LIBRESPOT_BACKEND="alsa"
+Environment=LIBRESPOT_CACHE=/%C/%p/%i
+Environment=LIBRESPOT_SYSTEM_CACHE=%S/%p/%i
+
+# This Moves librespot's /tmp to RAM
+# It is overridden in the config.
+# See the config for details.
+Environment=TMPDIR=%t/%p
+EnvironmentFile=-/etc/raspotify/%i.conf
+
+ExecStart=/usr/bin/librespot
+
+[Install]
+WantedBy=multi-user.target
