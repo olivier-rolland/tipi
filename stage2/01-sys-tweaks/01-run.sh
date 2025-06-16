@@ -45,10 +45,10 @@ fi
 
 on_chroot <<EOF
 for GRP in input spi i2c gpio; do
-	groupadd -f -r "\$GRP"
+	/usr/sbin/groupadd -f -r "\$GRP"
 done
 for GRP in adm dialout cdrom audio users sudo video games plugdev input gpio spi i2c netdev render; do
-  adduser $FIRST_USER_NAME \$GRP
+  /usr/sbin/adduser $FIRST_USER_NAME \$GRP
 done
 EOF
 
@@ -61,14 +61,14 @@ setupcon --force --save-only -v
 EOF
 
 on_chroot << EOF
-usermod --pass='*' root
+/usr/sbin/usermod --pass='*' root
 EOF
 
 rm -f "${ROOTFS_DIR}/etc/ssh/"ssh_host_*_key*
 
 sed -i "s/PLACEHOLDER//" "${ROOTFS_DIR}/etc/default/keyboard"
 on_chroot << EOF
-DEBIAN_FRONTEND=noninteractive dpkg-reconfigure keyboard-configuration
+DEBIAN_FRONTEND=noninteractive /usr/sbin/dpkg-reconfigure keyboard-configuration
 EOF
 
 sed -i 's/^#\?Storage=.*/Storage=volatile/' "${ROOTFS_DIR}/etc/systemd/journald.conf"

@@ -6,6 +6,7 @@ SBOM_FILE="${STAGE_WORK_DIR}/${IMG_FILENAME}${IMG_SUFFIX}.sbom"
 BMAP_FILE="${STAGE_WORK_DIR}/${IMG_FILENAME}${IMG_SUFFIX}.bmap"
 
 on_chroot << EOF
+PATH=$PATH:/usr/sbin
 update-initramfs -k all -c
 if [ -x /etc/init.d/fake-hwclock ]; then
 	/etc/init.d/fake-hwclock stop
@@ -13,6 +14,7 @@ fi
 if hash hardlink 2>/dev/null; then
 	hardlink -t /usr/share/doc
 fi
+dpkg -l > /tmp/packages.list
 EOF
 
 if [ -f "${ROOTFS_DIR}/etc/initramfs-tools/update-initramfs.conf" ]; then
@@ -83,7 +85,8 @@ cp "$ROOTFS_DIR/etc/rpi-issue" "$INFO_FILE"
 	fi
 
 	printf "\nPackages:\n"
-	dpkg -l --root "$ROOTFS_DIR"
+        cat "$ROOTFS_DIR/tmp/packages.list"
+        rm "$ROOTFS_DIR/tmp/packages.list"
 } >> "$INFO_FILE"
 
 if hash syft 2>/dev/null; then
