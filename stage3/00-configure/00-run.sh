@@ -10,4 +10,11 @@ on_chroot << EOF
 # Remove optional packages
 
 apt autoremove -y
+
+# Disable swap
+
+/sbin/dphys-swapfile swapoff
+/sbin/dphys-swapfile uninstall
+systemctl -q stop dphys-swapfile
+systemctl -q disable dphys-swapfile
 EOF
