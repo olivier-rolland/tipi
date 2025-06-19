@@ -1,1 +1,6 @@
 raspi-config
+
+flashrom
+lsb-release
+shared-mime-info
+xdg-user-dirs

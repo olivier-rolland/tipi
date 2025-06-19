@@ -35,3 +35,16 @@ bluez-firmware
 bluez-tools
 pi-bluetooth
 libasound2-plugin-bluez
+
+bsdextrautils
+bzip2
+dbus-user-session
+dos2unix
+exfatprogs
+fakeroot
+flashrom
+iso-codes
+ncurses-term
+pinentry-curses
+userconf-pi
+xz-utils
