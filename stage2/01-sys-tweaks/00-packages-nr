@@ -1,2 +1,34 @@
 cifs-utils
 rpicam-apps-lite
+ssh less fbset sudo psmisc strace ed ncdu
+console-setup keyboard-configuration debconf-utils parted
+bash-completion
+v4l-utils
+gpiod
+pigpio raspi-gpio
+avahi-daemon
+ca-certificates curl
+fake-hwclock nfs-common usbutils
+dosfstools
+dphys-swapfile
+raspberrypi-sys-mods
+pi-bluetooth
+apt-listchanges
+usb-modeswitch
+libpam-chksshpwd
+rpi-update
+libmtp-runtime
+rsync
+htop
+policykit-1
+ssh-import-id
+ethtool
+ntfs-3g
+pciutils
+rpi-eeprom
+raspi-utils
+udisks2
+unzip zip p7zip-full
+file
+kms++-utils
+bluez-firmware

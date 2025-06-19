@@ -3,6 +3,4 @@ raspi-firmware
 linux-image-rpi-v8
 linux-image-rpi-2712
 zstd
-firmware-linux-free
-bluez-firmware
 busybox
