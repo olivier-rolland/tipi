@@ -32,3 +32,6 @@ unzip zip p7zip-full
 file
 kms++-utils
 bluez-firmware
+bluez-tools
+pi-bluetooth
+libasound2-plugin-bluez
