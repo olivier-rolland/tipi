@@ -34,6 +34,8 @@ if [ "${USE_QEMU}" != "1" ]; then
 	fi
 fi
 
+echo "TIPI_BUILD=\"${IMG_NAME}${IMG_SUFFIX}\"" >> "${ROOTFS_DIR}/etc/os-release"
+
 rm -f "${ROOTFS_DIR}/etc/network/interfaces.dpkg-old"
 
 rm -f "${ROOTFS_DIR}/etc/apt/sources.list~"
