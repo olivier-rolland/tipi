@@ -22,5 +22,3 @@ elif [ -d "${ROOTFS_DIR}/var/lib/NetworkManager" ]; then
 		WirelessEnabled=false
 	EOF
 fi
-
-install -D -m 644 -t "${ROOTFS_DIR}/etc/systemd/network" "files/20-eth0.network"
