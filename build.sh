@@ -89,7 +89,7 @@ run_stage(){
 	STAGE_WORK_DIR="${WORK_DIR}/${STAGE}"
 	ROOTFS_DIR="${STAGE_WORK_DIR}"/rootfs
 
-	unmount "${WORK_DIR}/${STAGE}"
+	unmount_chroot
 
 	if [ ! -f SKIP_IMAGES ]; then
 		if [ -f "${STAGE_DIR}/EXPORT_IMAGE" ]; then
@@ -114,7 +114,7 @@ run_stage(){
 		done
 	fi
 
-	unmount "${WORK_DIR}/${STAGE}"
+	unmount_chroot
 
 	PREV_STAGE="${STAGE}"
 	PREV_STAGE_DIR="${STAGE_DIR}"
@@ -129,7 +129,7 @@ term() {
 	else
 		log "Build finished"
 	fi
-	unmount "${STAGE_WORK_DIR}"
+	unmount_chroot
 	if [ "$STAGE" = "export-image" ]; then
 		for img in "${STAGE_WORK_DIR}/"*.img; do
 			unmount_image "$img"
