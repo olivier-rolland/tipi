@@ -77,9 +77,9 @@ if [ -e "${ROOTFS_DIR}/etc/avahi/avahi-daemon.conf" ]; then
   sed -i 's/^#\?publish-workstation=.*/publish-workstation=yes/' "${ROOTFS_DIR}/etc/avahi/avahi-daemon.conf"
 fi
 
-install -D -m 644 -t "${ROOTFS_DIR}/etc/apt/apt.conf.d"          "files/97no-recommends-suggests.conf"
-install -D -m 644 -t "${ROOTFS_DIR}/etc/apt/apt.conf.d"          "files/97no-src-pkg-cache.conf"
-install -D -m 644 -t "${ROOTFS_DIR}/etc/apt/apt.conf.d"          "files/97no-translation.conf"
+install -D -m 644 -t "${ROOTFS_DIR}/etc/apt/apt.conf.d"          "files/97no-recommends-suggests"
+install -D -m 644 -t "${ROOTFS_DIR}/etc/apt/apt.conf.d"          "files/97no-src-pkg-cache"
+install -D -m 644 -t "${ROOTFS_DIR}/etc/apt/apt.conf.d"          "files/97no-translation"
 install -D -m 644 -t "${ROOTFS_DIR}/etc/sysctl.d"                "files/limit_kernel_logs.conf"
 install -D -m 644 -t "${ROOTFS_DIR}/etc/systemd/journald.conf.d" "files/disable_storage.conf"
 install -D -m 644 -t "${ROOTFS_DIR}/etc/avahi/services"          "files/ssh.service"
