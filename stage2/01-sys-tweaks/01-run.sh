@@ -84,6 +84,7 @@ install -D -m 644 -t "${ROOTFS_DIR}/etc/sysctl.d"                "files/limit_ke
 install -D -m 644 -t "${ROOTFS_DIR}/etc/systemd/journald.conf.d" "files/disable_storage.conf"
 install -D -m 644 -t "${ROOTFS_DIR}/etc/avahi/services"          "files/ssh.service"
 install -D -m 644 -t "${ROOTFS_DIR}/usr/lib/systemd/system"      "files/bt-agent.service"
+install -D -m 644 -t "${ROOTFS_DIR}/etc/dpkg/dpkg.cfg.d"         "files/99no-doc"
 
 on_chroot << EOF
 /sbin/dphys-swapfile swapoff
