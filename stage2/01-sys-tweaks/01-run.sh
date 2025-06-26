@@ -47,7 +47,7 @@ on_chroot <<EOF
 for GRP in input spi i2c gpio; do
 	/usr/sbin/groupadd -f -r "\$GRP"
 done
-for GRP in adm dialout cdrom audio users sudo video games plugdev input gpio spi i2c netdev render bluebooth; do
+for GRP in adm dialout cdrom audio users sudo video games plugdev input gpio spi i2c netdev render bluetooth; do
   /usr/sbin/adduser $FIRST_USER_NAME \$GRP
 done
 EOF
