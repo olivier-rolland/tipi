@@ -47,7 +47,7 @@ on_chroot <<EOF
 for GRP in input spi i2c gpio; do
 	/usr/sbin/groupadd -f -r "\$GRP"
 done
-for GRP in adm dialout cdrom audio users sudo video games plugdev input gpio spi i2c netdev render; do
+for GRP in adm dialout cdrom audio users sudo video games plugdev input gpio spi i2c netdev render bluebooth; do
   /usr/sbin/adduser $FIRST_USER_NAME \$GRP
 done
 EOF
@@ -83,6 +83,7 @@ install -D -m 644 -t "${ROOTFS_DIR}/etc/apt/apt.conf.d"          "files/97no-tra
 install -D -m 644 -t "${ROOTFS_DIR}/etc/sysctl.d"                "files/limit_kernel_logs.conf"
 install -D -m 644 -t "${ROOTFS_DIR}/etc/systemd/journald.conf.d" "files/disable_storage.conf"
 install -D -m 644 -t "${ROOTFS_DIR}/etc/avahi/services"          "files/ssh.service"
+install -D -m 644 -t "${ROOTFS_DIR}/usr/lib/systemd/system"      "files/bt-agent.service"
 
 on_chroot << EOF
 /sbin/dphys-swapfile swapoff
