@@ -2,3 +2,7 @@ bluez-alsa-utils
 mpd
 raspotify
 upmpdcli
+python3-mpd
+python3-dbus
+python3-musicbrainzngs
+python3-gi
