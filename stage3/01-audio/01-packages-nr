@@ -6,3 +6,4 @@ python3-mpd
 python3-dbus
 python3-musicbrainzngs
 python3-gi
+python3-redis
